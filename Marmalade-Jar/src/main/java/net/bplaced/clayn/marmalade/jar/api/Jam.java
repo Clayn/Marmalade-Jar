@@ -1,7 +1,6 @@
 package net.bplaced.clayn.marmalade.jar.api;
 
-import java.util.Collections;
-import java.util.Map;
+import java.util.List;
 
 /**
  *
@@ -11,16 +10,7 @@ import java.util.Map;
 public interface Jam
 {
 
-    public Map<String, Class<?>> getConfigurationOptions();
-
-    public Map<String, Object> getConfiguration();
-
-    public default Map<String, Object> getDefaultConfiguration()
-    {
-        return Collections.emptyMap();
-    }
-
-    public String getName();
-
-    public void configure(Map<String, Object> config);
+    String getName();
+    
+    List<Module> getModules();
 }
