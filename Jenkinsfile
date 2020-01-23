@@ -20,54 +20,54 @@ node {
         }
     }
     dir('Marmalade-Jar') { 
-		stage('Build') {
+		stage('Build Jar') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' -DskipTests compile"
             } else {
                 bat(/"${mvnHome}\bin\mvn" -DskipTests compile/)
             }
         }
-        stage('Test') {
+        stage('Test Jar') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore=true test"
             } else {
                 bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore=true test/)
             }
         }
-        stage('Install') {
+        stage('Install Jar') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' -DskipTests install"
             } else {
                 bat(/"${mvnHome}\bin\mvn" -DskipTests install/)
             }
         }
-        stage('Results') {
+        stage('Jar Results') {
             junit allowEmptyResults: true, testResults: '**/TEST-*.xml'
         }
     }
     dir('Strawberry') { 
-		stage('Build') {
+		stage('Build Strawberry') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' -DskipTests compile"
             } else {
                 bat(/"${mvnHome}\bin\mvn" -DskipTests compile/)
             }
         }
-        stage('Test') {
+        stage('Test Strawberry') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore=true test"
             } else {
                 bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore=true test/)
             }
         }
-        stage('Install') {
+        stage('Install Strawberry') {
             if (isUnix()) {
                 sh "'${mvnHome}/bin/mvn' -DskipTests install"
             } else {
                 bat(/"${mvnHome}\bin\mvn" -DskipTests install/)
             }
         }
-        stage('Results') {
+        stage('Strawberry Results') {
             junit allowEmptyResults: true, testResults: '**/TEST-*.xml'
         }
     }
