@@ -75,33 +75,7 @@ public class StrawberryLibrary implements Library
         }
     }
 
-    @Override
-    public Game createGame(String name)
-    {
-        try
-        {
-            checkDirectory();
-            Game exist = loadGame(name);
-            if (exist != null && exist.getName().equals(name))
-            {
-                throw new GameAlreadyExistsException(
-                        "Game '" + name + "' was already created in this library");
-            }
-            Game g = new Game();
-            g.setName(name);
-            File gameFile = new File(storingDirectory, name + ".sb");
-            gameFile.createNewFile();
-            try (FileWriter writer = new FileWriter(gameFile))
-            {
-                writer.write(new Gson().toJson(g));
-                writer.flush();
-            }
-            return g;
-        } catch (IOException ex)
-        {
-            throw new RuntimeException(ex);
-        }
-    }
+   
 
     private Game loadGame(String name)
     {
@@ -188,6 +162,33 @@ public class StrawberryLibrary implements Library
     public String getJam()
     {
         return "strawberry";
+    }
+
+    @Override
+    public Game createGame(Game game)
+    {
+    try
+        {
+            checkDirectory();
+            Game exist = loadGame(game.getName());
+            if (exist != null)
+            {
+                throw new GameAlreadyExistsException(
+                        "Game '" + game.getName() + "' was already created in this library");
+            }
+           
+            File gameFile = new File(storingDirectory, game.getName() + ".sb");
+            gameFile.createNewFile();
+            try (FileWriter writer = new FileWriter(gameFile))
+            {
+                writer.write(new Gson().toJson(game));
+                writer.flush();
+            }
+            return game;
+        } catch (IOException ex)
+        {
+            throw new RuntimeException(ex);
+        }    
     }
 
 }

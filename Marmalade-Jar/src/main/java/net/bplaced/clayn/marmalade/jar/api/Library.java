@@ -12,7 +12,13 @@ import net.bplaced.clayn.marmalade.core.script.Module;
 public interface Library extends Module
 {
 
-    public Game createGame(String name);
+    public default Game createGame(String name) {
+        Game g=new Game();
+        g.setName(name);
+        return createGame(g);
+    }
+    
+    public Game createGame(Game game);
 
     public Set<Game> getGames();
 
