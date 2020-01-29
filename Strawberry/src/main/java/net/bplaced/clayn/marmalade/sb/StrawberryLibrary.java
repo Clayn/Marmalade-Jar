@@ -38,8 +38,8 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.bplaced.clayn.marmalade.core.Game;
+import net.bplaced.clayn.marmalade.core.script.ModuleParameter;
 import net.bplaced.clayn.marmalade.core.script.NotYetConfiguredException;
-import net.bplaced.clayn.marmalade.core.util.Parameter;
 import net.bplaced.clayn.marmalade.jar.api.Library;
 import net.bplaced.clayn.marmalade.jar.err.GameAlreadyExistsException;
 
@@ -50,12 +50,12 @@ import net.bplaced.clayn.marmalade.jar.err.GameAlreadyExistsException;
 public class StrawberryLibrary implements Library
 {
 
-    private static final List<Parameter<?>> PARAMETER_LIST = new ArrayList<>();
+    private static final List<ModuleParameter> PARAMETER_LIST = new ArrayList<>();
     private File storingDirectory;
 
     static
     {
-        PARAMETER_LIST.add(new Parameter<>(File.class, "sb.library.path"));
+       
     }
 
     private void checkDirectory()
@@ -125,7 +125,7 @@ public class StrawberryLibrary implements Library
     }
 
     @Override
-    public List<Parameter<?>> getConfigurationParameters()
+    public List<ModuleParameter> getConfigurationParameters()
     {
         return Collections.unmodifiableList(PARAMETER_LIST);
     }
